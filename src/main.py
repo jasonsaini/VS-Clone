@@ -139,6 +139,11 @@ class MainWindow(QMainWindow):
         self.tree_view.setIndentation(10)
         self.tree_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         
+        self.tree_view.setHeaderSHidden(True)
+        self.tree_view.setColumnHidden(1,True)
+        self.tree_view.setColumnHidden(2,True)
+        self.tree_view.setColumnHidden(3,True)
+        
         tree_frame_layout.addWidget(self.tree_view)
         self.tree_frame.setLayout(tree_frame_layout)
         
