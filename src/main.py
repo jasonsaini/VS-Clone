@@ -149,8 +149,10 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage(f"Opened {new_folder}", 2000)
        
     def copy(self):
-        pass
-    
+        text_editor = self.tab_view.currentWidget()
+        if text_editor is not None:
+            text_editor.copy()
+            
     def set_new_tab(self, path: Path, is_new_file=False):
         text_editor = self.get_editor()
         
