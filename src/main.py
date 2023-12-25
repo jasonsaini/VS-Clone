@@ -64,7 +64,11 @@ class MainWindow(QMainWindow):
         text_editor.setAutoCompletionCaseSensitivity(False)
         text_editor.setAutoCompletionUseSingle(QsciScintilla.AcuNever)
 
-
+                
+        # lexer/syntax highlighting
+        # TODO: Expand functionality of default python lexer
+        python_lexer = QsciLexerPython()
+        text_editor.setLexer(self.python_lexer)
         
         return text_editor
     
