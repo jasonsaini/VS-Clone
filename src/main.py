@@ -9,6 +9,10 @@ from pathlib import Path
 import sys
 import os
 
+import keyword
+import pkgutil
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
@@ -52,23 +56,43 @@ class MainWindow(QMainWindow):
         
         #caret 
         # TODO: Add caret settings
-        text_editor.setCaretForegroundColor(QColor("#dedcdc"))
+        #!text_editor.setCaretForegroundColor(QColor("#dedcdc"))
         text_editor.setCaretLineVisible(True)
         text_editor.setCaretWidth(2)
-        text_editor.setCaretLineBackgroundColor(QColor("#2c313c"))
+       # text_editor.setCaretLineBackgroundColor(QColor("#2c313c"))
         
         #autocomplete
         text_editor.setAutoCompletionSource(QsciScintilla.AcsAll)
         # minimum character before autocomplete shows
         text_editor.setAutoCompletionThreshold(1)
         text_editor.setAutoCompletionCaseSensitivity(False)
-        #text_editor.setAutoCompletionUseSingle(QsciScintilla.AcuNever)
+        text_editor.setAutoCompletionUseSingle(QsciScintilla.AcusNever)
 
-                
         # lexer/syntax highlighting
         # TODO: Expand functionality of default python lexer
-        python_lexer = QsciLexerPython()
-        text_editor.setLexer(python_lexer)
+        self.python_lexer = QsciLexerPython()
+        
+        '''
+        self.api = QsciAPIs(self.python_lexer)
+        for key in keyword.kwlist + dir(__builtins__):
+            self.api.add(key)
+        
+        for _, name, _ in pkgutil.iter_modules():
+            self.api.add(name)
+            
+        self.api.add("addition(a: int, b: int)")
+        
+        self.api.prepare()
+        '''
+        
+        # line numbers
+        text_editor.setMarginType(0, QsciScintilla.NumberMargin)
+        text_editor.setMarginWidth(0, "000")
+        text_editor.setMarginsForegroundColor(QColor("#ff888888"))
+        text_editor.setMarginsBackgroundColor(QColor("#282c34"))
+        text_editor.setMarginsFont(self.window_font)
+
+        text_editor.setLexer(self.python_lexer)
         
         return text_editor
     
