@@ -50,17 +50,22 @@ class MainWindow(QMainWindow):
         text_editor.setEolMode(QsciScintilla.EolWindows)
         text_editor.setEolVisibility(False)
         
-        # autocomplete
+        #caret 
+        # TODO: Add caret settings
         text_editor.setCaretForegroundColor(QColor("#dedcdc"))
         text_editor.setCaretLineVisible(True)
         text_editor.setCaretWidth(2)
         text_editor.setCaretLineBackgroundColor(QColor("#2c313c"))
         
-        #caret 
-        # TODO: Add caret settings
+        #autocomplete
+        text_editor.setAutoCompletionSource(QsciScintilla.AcsAll)
+        # minimum character before autocomplete shows
+        text_editor.setAutoCompleteionThreshold(1)
+        text_editor.setAutoCompletionCaseSensitivity(False)
+        text_editor.setAutoCompletionUseSingle(QsciScintilla.AcuNever)
+
+
         
-        # lexer
-        # TODO: Add lexer
         return text_editor
     
     def setup_status_bar(self):
