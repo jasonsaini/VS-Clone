@@ -94,7 +94,16 @@ class MainWindow(QMainWindow):
 
         text_editor.setLexer(self.python_lexer)
         
+        text_editor.keyPressEvent = self.handle_editor_press
+        
         return text_editor
+    
+    def handle_editor_press(self, e: QKeyEvent):
+        text_editor:QsciScintilla = self.tab_view.currentWidget()
+        if e.modifiers() == Qt.ControlModifier and e.key() == Qt.Key_Space:
+            text_editor.autoCompleteFromAll()
+        else:
+            QsciScintilla.keyPressEvent(text_editor, e)
     
     def setup_status_bar(self):
         stat = QStatusBar(self)
