@@ -279,6 +279,8 @@ class MainWindow(QMainWindow):
         self.tab_view.setMovable(True)
         self.tab_view.setDocumentMode(True)
         
+        # add tab closing
+        self.tab_view.tabCloseRequested.connect(self.close_tab)
         
         
         self.hsplit.addWidget(self.tree_frame)
@@ -301,6 +303,10 @@ class MainWindow(QMainWindow):
     def is_binary(self, path):
         with open(path, 'rb') as f:
             return b'\0' in f.read(1024)
+    
+    def close_tab(self,index):
+        self.tab_view.removeTab(index)
+
 
 if __name__ == '__main__':
     app = QApplication([])
