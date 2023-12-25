@@ -104,6 +104,8 @@ class MainWindow(QMainWindow):
         pass
     
     def set_new_tab(self, path: Path, is_new_file=False):
+        text_editor = self.get_editor()
+        
         if is_new_file:
             self.tab_view.addTab(text_editor, "untitled")
             self.setWindowTitle("untitled")
@@ -132,6 +134,7 @@ class MainWindow(QMainWindow):
         self.current_file = path
         self.tab_view.setCurrentIndex(self.tab_view.count() - 1)
         self.statusBar().showMessage(f"Opened {path.name}", 2000)
+   
     def setup_body(self):
         # Body
         body_frame = QFrame()
