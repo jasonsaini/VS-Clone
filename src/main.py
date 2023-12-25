@@ -60,15 +60,15 @@ class MainWindow(QMainWindow):
         #autocomplete
         text_editor.setAutoCompletionSource(QsciScintilla.AcsAll)
         # minimum character before autocomplete shows
-        text_editor.setAutoCompleteionThreshold(1)
+        text_editor.setAutoCompletionThreshold(1)
         text_editor.setAutoCompletionCaseSensitivity(False)
-        text_editor.setAutoCompletionUseSingle(QsciScintilla.AcuNever)
+        #text_editor.setAutoCompletionUseSingle(QsciScintilla.AcuNever)
 
                 
         # lexer/syntax highlighting
         # TODO: Expand functionality of default python lexer
         python_lexer = QsciLexerPython()
-        text_editor.setLexer(self.python_lexer)
+        text_editor.setLexer(python_lexer)
         
         return text_editor
     
