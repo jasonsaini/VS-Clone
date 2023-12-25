@@ -91,6 +91,12 @@ class MainWindow(QMainWindow):
         side_bar_layout.setContentsMargins(5,10,5,0)
         side_bar_layout.setSpacing(0)
         side_bar_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
+        
+        folder_label = QLabel()
+        folder_label.setPixmap(QPixmap("./src/icons/folder-icon.svg").scaled(QSize(25,25)))
+        folder_label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        folder_label.mousePressEvent = self.show_hide_tab
+        side_bar_layout.addWidget(folder_label)
         self.side_bar.setLayout(side_bar_layout)
         
         body.addWidget(self.side_bar)
@@ -139,20 +145,34 @@ class MainWindow(QMainWindow):
         self.tree_view.setIndentation(10)
         self.tree_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         
-        self.tree_view.setHeaderSHidden(True)
+        self.tree_view.setHeaderHidden(True)
         self.tree_view.setColumnHidden(1,True)
         self.tree_view.setColumnHidden(2,True)
         self.tree_view.setColumnHidden(3,True)
         
+        #setup layout
         tree_frame_layout.addWidget(self.tree_view)
         self.tree_frame.setLayout(tree_frame_layout)
         
-        self.hsplit.addWidget(self.tree_frame)
+        #add tab window
+        self.tab_view = QTabWidget()
+        self.tab_view.setContentsMargins(0,0,0,0)
+        self.tab_view.setTabsClosable(True)
+        self.tab_view.setMovable(True)
+        self.tab_view.setDocumentMode(True)
         
+        
+        
+        self.hsplit.addWidget(self.tree_frame)
+        self.hsplit.addWidget(self.tab_view)
         body.addWidget(self.hsplit)
         body_frame.setLayout(body)
         
         self.setCentralWidget(body_frame)
+    
+    def show_hide_tab(self):
+        ...
+    
     def tree_view_context_menu(self,pos):
         ...
     def tree_view_clicked():
