@@ -92,7 +92,7 @@ class MainWindow(QMainWindow):
         copy_action.triggered.connect(self.copy)
         
     def new_file(self):
-        pass
+        self.set_new_tab(Path("untitled"), is_new_file=True)
         
     def open_file(self):
         pass
