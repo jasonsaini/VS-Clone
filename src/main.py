@@ -51,7 +51,10 @@ class MainWindow(QMainWindow):
         text_editor.setEolVisibility(False)
         
         # autocomplete
-        # TODO: Add autocomplete
+        text_editor.setCaretForegroundColor(QColor("#dedcdc"))
+        text_editor.setCaretLineVisible(True)
+        text_editor.setCaretWidth(2)
+        text_editor.setCaretLineBackgroundColor(QColor("#2c313c"))
         
         #caret 
         # TODO: Add caret settings
