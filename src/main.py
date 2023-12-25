@@ -3,6 +3,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.Qsci import * 
 from PyQt5.QtGui import *
+
+from pathlib import Path
+
 import sys
 import os
 
@@ -11,6 +14,8 @@ class MainWindow(QMainWindow):
         super(QMainWindow, self).__init__()
         self.side_bar_color = "#282c34"
         self.init_ui()
+        
+        self.current_file = None
     
     def init_ui(self):
         self.setWindowTitle("Visual Studio Clone")
@@ -28,7 +33,38 @@ class MainWindow(QMainWindow):
         self.show()
     
     def get_editor(self) -> QsciScintilla:
-        pass
+        text_editor = QsciScintilla()
+        
+        text_editor.setUtf8(True)
+        
+        text_editor.setFont(self.window_font)
+        
+        text_editor.setBraceMatching(QsciScintilla.SloppyBraceMatch)
+    
+        text_editor.setIndentationGuides(True)
+        text_editor.setTabWidth(4)
+        text_editor.setIndentationsUseTabs(False)
+        text_editor.setAutoIndent(True)
+        
+        # EOL
+        text_editor.setEolMode(QsciScintilla.EolWindows)
+        text_editor.setEolVisibility(False)
+        
+        # autocomplete
+        # TODO: Add autocomplete
+        
+        #caret 
+        # TODO: Add caret settings
+        
+        # lexer
+        # TODO: Add lexer
+        return text_editor
+    
+    def setup_status_bar(self):
+        stat = QStatusBar(self)
+        stat.setStyleSheet("color: #D3D3D3;")
+        stat.showMessage("Ready", 3000)
+        self.setStatusBar(stat)
     
     def setup_menu(self):
         menu_bar = self.menuBar()
@@ -66,7 +102,28 @@ class MainWindow(QMainWindow):
        
     def copy(self):
         pass
+    
+    def set_new_tab(self, path: Path, is_new_file=False):
+        if not path.is_file():
+            return
+        if not is_new_file and self.is_binary(path):
+            self.statusBar().showMessage("Cannot open binary file", 2000)
+            return
+
+        # check if file already open
+        if not is_new_file:
+            for i in range(self.tab_view.count()):
+                self.tab_view.setCurrentIndex(i)
+                self.current_file = path
         
+        text_editor = self.get_editor()
+        self.tab_view.addTab(text_editor, path.name)
+        if not is_new_file:
+            text_editor.setText(path.read_text())
+        self.setWindowTitle(path.name)
+        self.current_file = path
+        self.tab_view.setCurrentIndex(self.tab_view.count() - 1)
+        self.statusBar().showMessage(f"Opened {path.name}", 2000)
     def setup_body(self):
         # Body
         body_frame = QFrame()
@@ -175,9 +232,15 @@ class MainWindow(QMainWindow):
     
     def tree_view_context_menu(self,pos):
         ...
-    def tree_view_clicked():
-        ...
+    def tree_view_clicked(self, index:QModelIndex):
+        path = self.model.filePath(index)
+        p = Path(path)
+        self.set_new_tab(p)
     
+    def is_binary(self, path):
+        with open(path, 'rb') as f:
+            return b'\0' in f.read(1024)
+
 if __name__ == '__main__':
     app = QApplication([])
     window = MainWindow()
