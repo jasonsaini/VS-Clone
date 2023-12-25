@@ -80,6 +80,10 @@ class MainWindow(QMainWindow):
         open_file.setShortcut("Ctrl+O")
         open_file.triggered.connect(self.open_file)
         
+        open_folder = file_menu.addAction("Open Folder")
+        open_folder.setShortcut("Ctrl+K")
+        open_folder.triggered.connect(self.open_folder)
+        
         file_menu.addSeparator()
         
         save_file = file_menu.addAction("Save")
@@ -90,9 +94,7 @@ class MainWindow(QMainWindow):
         save_as.setShortcut("Ctrl+Shift+S")
         save_as.triggered.connect(self.save_file_as)
         
-        open_folder = file_menu.addAction("Open Folder")
-        open_folder.setShortcut("Ctrl+K")
-        open_folder.triggered.connect(self.open_folder)
+
         
         # Edit menu
         edit_menu = menu_bar.addMenu("Edit")
@@ -125,10 +127,26 @@ class MainWindow(QMainWindow):
         self.current_file = path
         
     def open_file(self):
-        pass
+        options  = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        new_file, _ = QFileDialog.getOpenFileName(self, "Choose File", "", "All Files (*);;Python Files (*.py)", options=options)
+        
+        if new_file == '':
+            self.statusBar().showMessage("Cancelled", 2000)
+            return
+        opened_filepath = Path(new_file)
+        self.set_new_tab(opened_filepath)
+        
         
     def open_folder(self):
-        pass
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        
+        new_folder = QFileDialog.getExistingDirectory(self, "Pick A Folder", "", options=options)
+        if new_folder:
+            self.model.setRootPath(new_folder)
+            self.tree_view.setRootIndex(self.model.index(new_folder))
+            self.statusBar().showMessage(f"Opened {new_folder}", 2000)
        
     def copy(self):
         pass
