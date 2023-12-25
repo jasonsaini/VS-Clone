@@ -80,6 +80,16 @@ class MainWindow(QMainWindow):
         open_file.setShortcut("Ctrl+O")
         open_file.triggered.connect(self.open_file)
         
+        file_menu.addSeparator()
+        
+        save_file = file_menu.addAction("Save")
+        save_file.setShortcut("Ctrl+S")
+        save_file.triggered.connect(self.save_file)
+        
+        save_as = file_menu.addAction("Save As")
+        save_as.setShortcut("Ctrl+Shift+S")
+        save_as.triggered.connect(self.save_file_as)
+        
         open_folder = file_menu.addAction("Open Folder")
         open_folder.setShortcut("Ctrl+K")
         open_folder.triggered.connect(self.open_folder)
@@ -93,6 +103,26 @@ class MainWindow(QMainWindow):
         
     def new_file(self):
         self.set_new_tab(Path("untitled"), is_new_file=True)
+        
+    def save_file(self):
+        if self.current_file is None and self.tab_view.count() > 0 :
+            self.save_file_as()
+        
+        text_editor = self.tab_view.currentWidget()
+    
+    def save_file_as(self):
+        text_editor = self.tab_view.currentWidget()
+        if text_editor is None:
+            return
+        file_path = QFileDialog.getSaveFileName(self, "Save As", os.getcwd())[0]
+        if file_path == "":
+            self.statusBar().showMessage("Save cancelled", 2000)
+            return
+        path = Path(file_path)
+        path.write_text(text_editor.text())
+        self.tab_view.setTabText(self.tab_view.currentIndex(), path.name)
+        self.statusBar().showMessage(f"Saved {path.name}", 2000)
+        self.current_file = path
         
     def open_file(self):
         pass
