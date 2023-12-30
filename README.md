@@ -16,7 +16,7 @@
 
 ## Getting Started
 
-Follow these steps to initiate your journey with VS-Clone:
+Follow these steps to get started with VS-Clone:
 
 ### Prerequisites
 
@@ -29,10 +29,16 @@ Before you proceed, ensure that you have the following prerequisites installed o
 ### Installation
 
 1. Clone the project repository:
-
    ```bash
    git clone https://github.com/your-username/VS-Clone.git
 
+2. Navigate to project directory: 
+   ```bash
    cd VS-Clone
+3. Install requisite dependencies:
+   ```bash
    pip install -r requirements.txt
+4. To run:
+   ```bash
    python main.py
+
