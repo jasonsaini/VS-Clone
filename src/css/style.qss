@@ -1,0 +1,26 @@
+QMainWindow {
+    background-color : #202c34;
+    color: #d3d3d3;
+}
+
+QTabWidget{
+    background-color : #282c34;
+    color: #d3d3d3;
+}
+
+QTabBar::tab{
+    background-color: rgb(36,36,36)
+    color: #d3d3d3;
+    min-width: 10px;
+    min-height: 10px;
+    padding: 10px 20px;
+    border-style : none;
+}
+
+QEditor::tab::selected{
+    color: #d3d3d3;
+    border-style: none;
+    background-color: #2d2d2d;
+    border-bottom: 2px solid #d3d3d3;
+
+}
