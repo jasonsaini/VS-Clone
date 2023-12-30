@@ -17,7 +17,7 @@ QTabBar::tab{
     border-style : none;
 }
 
-QEditor::tab::selected{
+QTabBar::tab::selected{
     color: #d3d3d3;
     border-style: none;
     background-color: #2d2d2d;
