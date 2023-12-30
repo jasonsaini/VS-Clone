@@ -24,3 +24,7 @@ QTabBar::tab::selected{
     border-bottom: 2px solid #d3d3d3;
 
 }
+
+QTabBar::close-button {
+    image: url(":/icons/close-icon.svg");
+}
