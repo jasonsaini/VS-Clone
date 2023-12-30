@@ -28,3 +28,33 @@ QTabBar::tab::selected{
 QTabBar::close-button {
     image: url(":/icons/close-icon.svg");
 }
+
+QSplitter {
+    background-color: #282c34;
+}
+
+QSplitter::handle {
+    background-color: #2d2d2d;
+}
+
+QScrollBar:vertical {
+    border: none;
+    width: 14px;
+    margin: 15px 0 15px 0;
+    background-color: #2d2d2d;
+    border-radius: 0px;
+}
+
+
+QScrollBar:handle:vertical {
+    background-color: #3e3d3d;
+}
+
+QScrollBar:handle:vertical:hover {
+    background-color: #4c4a4a;
+}
+
+
+QScrollBar:handle:vertical:pressed {
+    background-color: #5c5b5b;
+}
