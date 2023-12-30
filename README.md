@@ -1,9 +1,12 @@
 # 🚀 VS-Clone: A Visual Studio Code Inspired Code Editor
-![image](https://github.com/jasonsaini/VS-Clone/assets/69808698/61978750-e101-4749-8754-745025e32a45)
+![image](https://github.com/jasonsaini/VS-Clone/assets/69808698/b1bcef28-fdbc-4952-9afa-2314a2d10eb2)
+
 
 ## Introduction
 
 **VS-Clone** replicates the functionalities and aesthetics of Visual Studio Code, offering a familiar coding experience. Built with Python and Qt5, powered by QtScintilla for code editing.
+
+
 🚧 **Please Note: This project is a work in progress and under active development.** 🚧
 
 ## Key Features
