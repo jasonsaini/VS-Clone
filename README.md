@@ -1,5 +1,6 @@
 # 🚀 VS-Clone: A Microsoft Inspired Code Editor
-![image](https://github.com/jasonsaini/VS-Clone/assets/69808698/b1bcef28-fdbc-4952-9afa-2314a2d10eb2)
+![image](https://github.com/jasonsaini/VS-Clone/assets/69808698/971e7843-720c-496c-8ed0-604b180da0cc)
+
 
 
 ## Introduction
