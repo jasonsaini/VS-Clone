@@ -13,6 +13,9 @@ class Editor(QsciScintilla):
           
         self.setUtf8(True)
         
+        self.window_font = QFont("Fire Code") # font needs to be installed in your computer if its not use something else
+        self.window_font.setPointSize(12)
+        self.setFont(self.window_font)
         self.setFont(self.window_font)
         
         self.setBraceMatching(QsciScintilla.SloppyBraceMatch)
@@ -66,9 +69,9 @@ class Editor(QsciScintilla):
 
         self.setLexer(self.python_lexer)
         
-        self.keyPressEvent = self.handle_editor_press
+        #self.keyPressEvent = self.handle_editor_press
         
-        return self
+        #return self
     
     def handle_editor_press(self, e: QKeyEvent):
         self:QsciScintilla = self.tab_view.currentWidget()
