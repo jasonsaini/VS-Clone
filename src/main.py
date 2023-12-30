@@ -169,6 +169,13 @@ class MainWindow(QMainWindow):
         self.tab_view.setCurrentIndex(self.tab_view.count() - 1)
         self.statusBar().showMessage(f"Opened {path.name}", 2000)
    
+
+    def set_cursor_pointer(self, e):
+        self.setCursor(Qt.PointingHandCursor)
+
+    def set_cursor_arrow(self, e):
+        self.setCursor(Qt.ArrowCursor)
+    
     def setup_body(self):
         # Body
         body_frame = QFrame()
@@ -194,11 +201,9 @@ class MainWindow(QMainWindow):
         side_bar_layout.setSpacing(0)
         side_bar_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
         
-        folder_label = QLabel()
-        folder_label.setPixmap(QPixmap("./src/icons/folder-icon.svg").scaled(QSize(25,25)))
-        folder_label.setAlignment(Qt.AlignmentFlag.AlignTop)
-        folder_label.mousePressEvent = self.show_hide_tab
+        folder_label = self.get_side_bar_label("./src/icons/folder-icon.svg", "folder-icon")
         side_bar_layout.addWidget(folder_label)
+
         self.side_bar.setLayout(side_bar_layout)
         
         body.addWidget(self.side_bar)
@@ -274,8 +279,37 @@ class MainWindow(QMainWindow):
         
         self.setCentralWidget(body_frame)
     
-    def show_hide_tab(self):
-        ...
+    
+    def get_side_bar_label(self, path, name):
+        label = QLabel()
+        label.setPixmap(QPixmap(path).scaled(QSize(30, 30)))
+        label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        label.setFont(self.window_font)
+        label.mousePressEvent = lambda e: self.show_hide_tab(e, name)
+        # Chaning Cursor on hover
+        label.enterEvent = self.set_cursor_pointer
+        label.leaveEvent = self.set_cursor_arrow
+        return label
+
+
+
+    def show_hide_tab(self, e, type_):
+        if type_ == "folder-icon":
+            if not (self.file_manager_frame in self.hsplit.children()):
+                self.hsplit.replaceWidget(0, self.file_manager_frame)
+        elif type_ == "search-icon":
+            if not (self.search_frame in self.hsplit.children()):
+                self.hsplit.replaceWidget(0, self.search_frame)
+
+        if self.current_side_bar == type_:
+            frame = self.hsplit.children()[0]
+            if frame.isHidden():
+                frame.show()
+            else:
+                frame.hide()
+        
+        self.current_side_bar = type_
+
     
     def tree_view_context_menu(self,pos):
         ...
