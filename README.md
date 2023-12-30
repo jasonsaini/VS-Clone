@@ -48,7 +48,7 @@ Before you proceed, ensure that you have the following prerequisites installed o
 
 ## Roadmap (TODO)
 - [ ] 🔨 UI refinement for VS Code aesthetics.
-- [ ] 🌐 Multi-language lexers for versatility.
+- [ ] 🌐 Multiple language lexers for versatility.
 - [ ] 🏗️ Compiler and build system integration.
 - [ ] 🔍 Enhanced search and find functionalities.
 - [ ] 📦 Package code into an installer.
