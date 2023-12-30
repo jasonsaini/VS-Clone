@@ -294,21 +294,10 @@ class MainWindow(QMainWindow):
 
 
     def show_hide_tab(self, e, type_):
-        if type_ == "folder-icon":
-            if not (self.file_manager_frame in self.hsplit.children()):
-                self.hsplit.replaceWidget(0, self.file_manager_frame)
-        elif type_ == "search-icon":
-            if not (self.search_frame in self.hsplit.children()):
-                self.hsplit.replaceWidget(0, self.search_frame)
-
-        if self.current_side_bar == type_:
-            frame = self.hsplit.children()[0]
-            if frame.isHidden():
-                frame.show()
-            else:
-                frame.hide()
-        
-        self.current_side_bar = type_
+        if self.tree_frame.isHidden():
+            self.tree_frame.show()
+        else:
+            self.tree_frame.hide()
 
     
     def tree_view_context_menu(self,pos):
