@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.Qsci import * 
 from PyQt5.QtGui import *
-
+from PyQt5 import QtGui
 from pathlib import Path
 
 import sys
@@ -13,18 +13,20 @@ import keyword
 import pkgutil
 
 from editor import Editor
-
+import ctypes
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
         super(QMainWindow, self).__init__()
         self.side_bar_color = "#282c34"
         self.init_ui()
-        
+        self.setWindowTitle("Visual Studio Clone")
+        self.setWindowIcon(QtGui.QIcon('./src/icons/vs-clone.png'))
         self.current_file = None
     
     def init_ui(self):
-        self.setWindowTitle("Visual Studio Clone")
         self.resize(1300, 900)
         
         self.setStyleSheet(open("./src/css/style.qss", "r").read())
