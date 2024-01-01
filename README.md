@@ -34,7 +34,7 @@ Before you proceed, ensure that you have the following prerequisites installed o
 
 1. Clone the project repository:
    ```bash
-   git clone https://github.com/your-username/VS-Clone.git
+   git clone https://github.com/jasonsaini/VS-Clone.git
 
 2. Navigate to project directory: 
    ```bash
