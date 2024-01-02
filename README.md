@@ -44,7 +44,7 @@ Before you proceed, ensure that you have the following prerequisites installed o
    pip install -r requirements.txt
 4. To run:
    ```bash
-   python main.py
+   python src/main.py
 
 ## Roadmap (TODO)
 - [ ] 🔨 UI refinement for VS Code aesthetics.
