@@ -5,7 +5,7 @@
 
 ## Introduction
 
-**VS-Clone** replicates the functionalities and aesthetics of Visual Studio Code, offering a familiar coding experience. Built with Python and Qt5, powered by QtScintilla for code editing.
+**VS-Clone** replicates the functionalities and aesthetics of Visual Studio Code, offering a familiar coding experience. Built with Python and Qt5, powered by QtScintilla for code editing. Currently tested on Python 11 and Windows
 
 
 🚧 **Please Note: This project is a work in progress and under active development.** 🚧
