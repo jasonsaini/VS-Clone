@@ -27,7 +27,8 @@ Follow these steps to get started with VS-Clone:
 Before you proceed, ensure that you have the following prerequisites installed on your system:
 
 - Python 3.x
-
+- Microsoft C++ Redistrutable
+  
 ### Installation
 
 1. Clone the project repository:
